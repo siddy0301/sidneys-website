@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sidney Stelzers Eigentum</title>
+  <style>
+    :root {
+      --bg: #0f172a;       /* slate-900 */
+      --fg: #e2e8f0;       /* slate-200 */
+      --accent: #94a3b8;   /* slate-400 */
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 800px at 50% 40%, #111827 0%, var(--bg) 60%);
+      color: var(--fg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    .wrap {
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      display: inline-flex;
+      align-items: center;
+      gap: clamp(16px, 4vw, 40px);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: clamp(16px, 4vw, 40px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
+      backdrop-filter: blur(6px);
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 8vw, 96px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-align: center;
+      text-shadow: 0 2px 12px rgba(0,0,0,.45);
+      white-space: pre-line;
+    }
+    .gif {
+      width: clamp(80px, 18vw, 220px);
+      height: clamp(80px, 18vw, 220px);
+      border-radius: 18px;
+      overflow: hidden;
+      display: none; /* toggled on if image loads */
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(0,0,0,.2);
+    }
+    .gif img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .note { text-align:center; color: var(--accent); margin-top: 18px; font-size: 14px; opacity: .85; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card" aria-label="Hinweis">
+      <!-- Optional GIF container. Put a file named monkey.gif next to this HTML file -->
+      <figure class="gif" id="gif">
+        <img src="monkey.gif" alt="Affe klatscht mit Becken" />
+      </figure>
+
+      <h1>sidney stelzers eigentum</h1>
+    </section>
+  </main>
+
+  <p class="note">Füge optional eine <code>monkey.gif</code> neben diese Datei hinzu – wird automatisch angezeigt.</p>
+
+  <script>
+    // Only show the GIF frame if the image actually loads
+    (function () {
+      const img = document.querySelector('#gif img');
+      const frame = document.getElementById('gif');
+      if (!img) return;
+      if (img.complete && img.naturalWidth) {
+        frame.style.display = 'block';
+      } else {
+        img.addEventListener('load', () => frame.style.display = 'block');
+        img.addEventListener('error', () => frame.remove());
+      }
+    })();
+  </script>
+</body>
+</html>
